@@ -76,12 +76,3 @@ Insert mode
 | 21 Apr 23 | v1.0  | Phil Grunewald | Plugin version        |
 | 20 Feb 21 | v0.1  | Phil Grunewald | Initial version with  |
 
-
-
-
-
-
-
-
-===================================================================
- vim:tw=78:ts=8:sw=2:et:ft=help:norl:
