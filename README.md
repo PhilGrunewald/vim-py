@@ -43,7 +43,7 @@ Normal mode
 | Key         | Action            |
 |-----------  |-------            |
 |  `++`         | increment number, toggle 'True' and 'False'  |
-|  `--`         | reverse of `+``+`   |
+|  `--`         | reverse of `++`   |
 |  `<S-SPACE>`  | toggle comment  |
 |  `<SPACE>`    | toggle folding  |
 |  `<S-ENTER>`  | execute block   |
@@ -59,8 +59,7 @@ Insert mode
 
 
 
-====================================================================
-3. Commands                                       *vim-py-commands*
+## 3. Commands
 
 | Command     | Action                       |
 |-----------  |------------                  |
@@ -68,8 +67,7 @@ Insert mode
 | *Lint*        | run `Flake8` PEP8 checks       |
 
 
-====================================================================
-4. Revision history                              *vim-py-revisions*
+## 4. Revision history
 
 | Date      | Ver.  | Author         | Updates               |
 | ----      | ----- | ------         | --------              |
