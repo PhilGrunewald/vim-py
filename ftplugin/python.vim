@@ -1,7 +1,9 @@
 " Filetype plugin for executing python in block and other conveniences
-" vim-py plugin
+" vim-py-kid plugin
 " Author: Phil Grunewald
 " Version: 1.0
+
+let s:sfile = expand("<sfile>:p:h")
 
 " ==============
 "  Incrementing
@@ -28,21 +30,15 @@ endfunction
 "  Commenting
 " ==============
 
-function! ToggleComment()
-    s/\(^\s*\)\s\?/\1# /
-    s/\(\s*\)# #\s\?/\1/
-    normal j
-endfunction
-
-nnoremap <buffer><S-SPACE> :silent! call ToggleComment()<CR>
-" all my comments as //
-iabbrev <buffer> // #
+if exists("g:comment_char")
+  let g:comment_char = "#"
+  execute commentOn
+endif
 
 " ==============
 " appearance
 " ==============
 
-colorscheme freya
 " for quickfix on the right
 set splitright
 
@@ -103,10 +99,9 @@ function! Process()
     PWD
     silent! %s/^\(\s*\)>\(.*\)/\1print(\2)/
     silent! %s/^?\(.*\)/print(help(\1))/
-    silent! %s/^x$/#>                                            <#/
-    silent! %s/^#>$/#>                                            <#/
+    " silent! %s/^#>$/#>                                            <#/
     write
-    let cmd = 'terminal python3 '.$NVIM.'/plugged/vim-py/python3/vim.py '.expand('%').' '.line('.').' && cp '.$NVIM.'/plugged/vim-py/python3/vimpy.py ./ && python3 .% && mv vimpy.py .vimpy.py'
+    let cmd = 'terminal python3 '.s:sfile.'/../python3/vim.py '.expand('%').' '.line('.').' && cp '.s:sfile.'/../python3/vimpy.py ./ && python3 .% && mv vimpy.py .vimpy.py'
     silent! bd! term*python " kill previous python terminals "
     vertical split
     execute cmd
@@ -114,9 +109,12 @@ function! Process()
 endfunction
 
 function! HelpMe(helpStr)
-    let cmd = 'terminal python3 '.$NVIM.'/plugged/vim-py/python3/vim.py '.expand('%').' '.a:helpStr.' && python3 .%'
+    let cmd = 'terminal python3 '.s:sfile.'/../python3/vim.py '.expand('%').' '.a:helpStr.' && python3 .%'
     silent! bd! term*python " kill previous python terminals "
     vertical split
     execute cmd
     wincmd h
 endfunction
+
+command! XX echo s:sfile
+
